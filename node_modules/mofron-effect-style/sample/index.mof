@@ -1,0 +1,14 @@
+<require>
+    <tag load="mofron-comp-text">Text</tag>
+    <tag load="mofron-event-click">Click</tag>
+    <tag load="mofron-effect-style">efStyle</tag>
+</require>
+
+<Text text="Style Effect">
+    <effect>
+        <efStyle eid=2>color:red;</efStyle>
+    </effect>
+    <event>
+       <Click eid=2></Click>
+    </event>
+</Text>

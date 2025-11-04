@@ -1,0 +1,126 @@
+<setting>
+    <tag load="mofron-comp-text">Text</tag>
+    <tag load="mofron-comp-image">Image</tag>
+    <tag load="mofron-comp-ujarak">Button</tag>
+    <tag load="mofron-comp-appbase">AppBase</tag>
+    <tag load="mofron-comp-table">Table</tag>
+    <!-- event -->
+    <tag load="mofron-event-click">Click</tag>
+    <!-- effect -->
+    <tag load="mofron-effect-border">Border</tag>
+    <tag load="mofron-effect-width">efWidth</tag>
+    <tag load="mofron-effect-fade">Fade</tag>
+    <!-- layout -->
+    <tag load="mofron-layout-hrzcenter">HrzCent</tag>
+    <tag load="mofron-layout-margin">loMargin</tag>
+    <tag load="mofron-layout-grid">Grid</tag>
+    <root-conf>
+        <theme>
+            <Text:config>
+                <font>"'M PLUS Rounded 1c'"</font>
+                <main-color>[80,80,80]</main-color>
+            </Text:config>
+        </theme>
+    </root-conf>
+</setting>
+
+<script run=init>
+let close_menu = () => {
+    try {
+        leftMenu.execEffect(2);
+        mainConts.execEffect(2);
+	menubar_img.visible(true);
+    } catch (e) {
+        console.error(e.stack);
+	throw e;
+    }
+}
+
+let open_menu = () => {
+    try {
+        leftMenu.execEffect(3);
+        mainConts.execEffect(3);
+	menubar_img.visible(false);
+    } catch (e) {
+        console.error(e.stack);
+        throw e;
+    }
+}
+
+
+//.row([
+//            new Text({ size:'0.45rem', font:"'Nico Moji'", 'mainColor':[90,90,90], text:order[oidx].item }),
+//            new Text({ size:'0.45rem', font:"'Nico Moji'", 'mainColor':[90,90,90], text:order[oidx].count+"さら" }),
+//            new Text({ size:'0.45rem', font:"'Nico Moji'", 'mainColor':[90,90,90], text:"￥"+order[oidx].price*order[oidx].count })
+//        ]);
+
+</script>
+
+<AppBase title="Kumiki-Search" main-color=[255,255,255]>
+    <header:mf-pull>
+        <navi:Text text="Sign-Out"></navi:Text>
+    </header:mf-pull>
+    <div layout=Grid:[13,85]>
+        <div name=leftMenu style="overflow:hidden;">
+	    <effect>
+	        <Border position=right color=[180,180,180]></Border>
+		<efWidth eid=2 toValue="0%" speed=300></efWidth>
+		<efWidth eid=3 toValue="13%" speed=300></efWidth>
+            </effect>
+	    <div style="display:flex; justify-content:flex-end;">
+	        <Image size=(0.25rem,0.25rem) style="margin:0.1rem;" event=Click:@close_menu>
+	            <src>./img/left.svg</src>
+                </Image>
+            </div>
+	    <div layout=loMargin:("top",0.1rem)>
+	        <layout>
+		    <loMargin>"top",0.1rem</loMargin>
+		    <loMargin>"left","0.2rem"</loMargin>
+		</layout>
+	        <Text size=0.18rem>
+		    <style locked=true>margin-top:0.1rem;</style>
+		    <text>APIs</text>
+		</Text>
+		<Text size=0.18rem>Logs</Text>
+		<Text size=0.18rem>Data</Text>
+		<Text size=0.18rem>Access</Text>
+		<Text size=0.18rem>License</Text>
+	    </div>
+	</div>
+        <div name=mainConts style="min-height:100vh;">
+            <effect>
+                <efWidth eid=2 toValue="99%" speed=300></efWidth>
+                <efWidth eid=3 toValue="85%" speed=300></efWidth>
+            </effect>
+            <!-- controller -->
+            <div style="display:flex;">
+                <layout>
+                    <loMargin>top,0.1rem</loMargin>
+                    <loMargin>left,0.2rem</loMargin>
+                </layout>
+	        <Image name=menubar_img visible=false>
+                    <event:Click>@open_menu</event:Click>
+                    <effect>
+                        <Fade>true,300</Fade>
+                        <Fade>false,300</Fade>
+                    </effect>
+                    <size>0.25rem,0.25rem</size>
+                    <src>./img/menubar.svg</src>
+                </Image>
+                <Button size=("2rem","0.3rem")>Create API</Button>
+	    </div>
+	    <div layout=HrzCent:85 style="margin-top:0.2rem;">
+	        <Table name=api_table rules=under rowHeight=0.8rem>
+		    <column-width>["1rem","1.5rem","1rem","1.5rem"]</column-width>
+	            <head>
+		        <Text>Name</Text>
+		        <Text>ID</Text>
+		        <Text>Status</Text>
+			<Text>Type</Text>
+			<Text>Expires</Text>
+		    </head>
+	        </Table>
+            </div>
+        </div>
+    </div>
+</AppBase>

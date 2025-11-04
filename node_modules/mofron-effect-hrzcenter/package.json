@@ -1,0 +1,22 @@
+{
+  "name": "mofron-effect-hrzcenter",
+  "version": "0.0.1",
+  "description": "horizon center effect for mofron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simpart/mofron-effect-hrzcenter.git"
+  },
+  "keywords": [
+    "front-end"
+  ],
+  "author": "simparts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simpart/mofron-effect-hrzcenter/issues"
+  },
+  "homepage": "https://github.com/simpart/mofron-effect-hrzcenter#readme"
+}
