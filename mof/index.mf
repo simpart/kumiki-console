@@ -1,9 +1,12 @@
 <setting>
     <tag load="mofron-comp-text">Text</tag>
+    <tag load="mofron-comp-frame">Frame</tag>
     <tag load="mofron-comp-image">Image</tag>
     <tag load="mofron-comp-ujarak">Button</tag>
     <tag load="mofron-comp-appbase">AppBase</tag>
     <tag load="mofron-comp-table">Table</tag>
+    <tag load="mofron-comp-menutext">MenuText</tag>
+    <tag load="mofron-comp-dev">Split</tag>
     <!-- event -->
     <tag load="mofron-event-click">Click</tag>
     <!-- effect -->
@@ -47,16 +50,27 @@ let open_menu = () => {
     }
 }
 
-
-//.row([
-//            new Text({ size:'0.45rem', font:"'Nico Moji'", 'mainColor':[90,90,90], text:order[oidx].item }),
-//            new Text({ size:'0.45rem', font:"'Nico Moji'", 'mainColor':[90,90,90], text:order[oidx].count+"さら" }),
-//            new Text({ size:'0.45rem', font:"'Nico Moji'", 'mainColor':[90,90,90], text:"￥"+order[oidx].price*order[oidx].count })
-//        ]);
+let select_menu = (p1,p2,p3) => {
+}
 
 </script>
 
-<AppBase title="Kumiki-Search" main-color=[255,255,255]>
+<script run=before>
+hrz_split.height((window.innerHeight-50)+"px");
+</script>
+
+<script run=after>
+api_table.insert([
+    new Frame({ size:new mofron.class.ConfArg("0.18rem","0.18rem") }),
+    new Text({ text:"aaa", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"bbb", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"ccc", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"ddd", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"eee", style:{"margin-left":"0.1rem;"} }),
+]);
+</script>
+
+<AppBase title=("Kumiki-Search","./img/logo.png") main-color=[255,255,255]>
     <header:mf-pull>
         <navi:Text text="Sign-Out"></navi:Text>
     </header:mf-pull>
@@ -77,22 +91,27 @@ let open_menu = () => {
 		    <loMargin>"top",0.1rem</loMargin>
 		    <loMargin>"left","0.2rem"</loMargin>
 		</layout>
-	        <Text size=0.18rem>
-		    <style locked=true>margin-top:0.1rem;</style>
-		    <text>APIs</text>
-		</Text>
-		<Text size=0.18rem>Logs</Text>
-		<Text size=0.18rem>Data</Text>
-		<Text size=0.18rem>Access</Text>
-		<Text size=0.18rem>License</Text>
+		<MenuText select-event=@select_menu>
+                    <text>APIs</text>
+		    <text>Access</text>
+		    <text>License</text>
+		    <text>Support</text>
+		</MenuText>
 	    </div>
 	</div>
+        
+        <Split name=hrz_split ratio=(55,45)>
+	    <div></div>
+	    <div></div>
+	</Split>
+        
+        
+	<!--
         <div name=mainConts style="min-height:100vh;">
             <effect>
                 <efWidth eid=2 toValue="99%" speed=300></efWidth>
                 <efWidth eid=3 toValue="85%" speed=300></efWidth>
             </effect>
-            <!-- controller -->
             <div style="display:flex;">
                 <layout>
                     <loMargin>top,0.1rem</loMargin>
@@ -110,17 +129,20 @@ let open_menu = () => {
                 <Button size=("2rem","0.3rem")>Create API</Button>
 	    </div>
 	    <div layout=HrzCent:85 style="margin-top:0.2rem;">
-	        <Table name=api_table rules=under rowHeight=0.8rem>
-		    <column-width>["1rem","1.5rem","1rem","1.5rem"]</column-width>
+	        <Table name=api_table rules=under rowHeight=0.4rem main-color=[230,230,230]>
+		    <column-width>["0.6rem","2rem","1.5rem","1rem","1.5rem"]</column-width>
+		    <align>["center","left","left","left","left","left"]</align>
 	            <head>
-		        <Text>Name</Text>
-		        <Text>ID</Text>
-		        <Text>Status</Text>
-			<Text>Type</Text>
-			<Text>Expires</Text>
+		        <Text>" "</Text>
+		        <Text style="margin-left:0.1rem;">Name</Text>
+		        <Text style="margin-left:0.1rem;">ID</Text>
+		        <Text style="margin-left:0.1rem;">Status</Text>
+			<Text style="margin-left:0.1rem;">Type</Text>
+			<Text style="margin-left:0.1rem;">Expires</Text>
 		    </head>
 	        </Table>
             </div>
         </div>
+	-->
     </div>
 </AppBase>
