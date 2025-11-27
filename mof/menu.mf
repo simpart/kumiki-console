@@ -1,0 +1,34 @@
+<setting>
+    <tag load="mofron-layout-margin">loMargin</tag>
+    <tag load="mofron-comp-menutext">MenuText</tag>
+    <tag load="mofron-effect-border">Border</tag>
+</setting>
+
+<script run=init>
+function select_menu () {
+    try {
+        
+    } catch (e) {
+        console.error(e.stack);
+	throw e;
+    }
+}
+</script>
+
+<div name=leftMenu style="overflow:hidden;">
+    <effect>
+        <Border position=right color=[180,180,180]></Border>
+    </effect>
+    <div layout=loMargin:("top",0.1rem)>
+        <layout>
+            <loMargin>"top",0.1rem</loMargin>
+            <loMargin>"left","0.2rem"</loMargin>
+        </layout>
+        <MenuText select-event=@select_menu>
+            <text>APIs</text>
+            <text>Access</text>
+            <text>License</text>
+            <text>Support</text>
+        </MenuText>
+    </div>
+</div>

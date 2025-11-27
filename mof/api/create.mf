@@ -1,0 +1,50 @@
+<setting>
+    <tag load="mofron-comp-text">Text</tag>
+    <tag load="mofron-comp-appbase">AppBase</tag>
+    <tag load="mofron-comp-image">Image</tag>
+    <!-- event -->
+    <tag load="mofron-event-click">Click</tag>
+    <!-- layout -->
+    <tag load="mofron-layout-grid">Grid</tag>
+    <!-- util -->
+    <tag load="mofron-util-bodyfade">bodyfade</tag>
+    <root-conf>
+        <theme>
+            <Text:config>
+                <font>"'M PLUS Rounded 1c'"</font>
+                <main-color>[80,80,80]</main-color>
+            </Text:config>
+        </theme>
+    </root-conf>
+</setting>
+
+<script run=init>
+function back_event () {
+    bodyfade.fadeout(() => {
+        location.href = "./index.html";
+    });
+}
+</script>
+
+<script run=after>
+bodyfade.speed(200,200);
+bodyfade.fadein();
+</script>
+
+<AppBase title=("Kumiki-Search","../img/logo.png") main-color=[255,255,255]>
+    <header:mf-pull>
+        <navi:Text text="Sign-Out"></navi:Text>
+    </header:mf-pull>
+    <div layout=Grid:[13,85]>
+        <mf-load>../menu.mf</mf-load>
+        <div>
+	    <div style="display:flex;align-items:center;margin-top:0.1rem;">
+                <Image size=(0.3rem,0.3rem) style="margin-left:0.1rem;" event=Click:@back_event>
+		    <src>"../img/left.svg"</src>
+		</Image>
+		<Text size=0.23rem style="margin-left:0.1rem;" event=Click:@back_event>Back</Text>
+            </div>
+	</div>
+    </div>
+
+</AppBase>

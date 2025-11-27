@@ -1,0 +1,32 @@
+<script run=init>
+function create_btn_event () {
+    bodyfade.fadeout(() => {
+        location.href = "./create.html";
+    });
+}
+</script>
+
+<div>
+    <div style="display:flex;">
+        <layout>
+            <loMargin>top,0.2rem</loMargin>
+            <loMargin>left,0.2rem</loMargin>
+        </layout>
+        <Button size=("2rem","0.3rem") click-event=@create_btn_event>Create API</Button>
+    </div>
+    <div layout=HrzCent:85 style="margin-top:0.2rem;">
+        <Table name=api_table rules=under rowHeight=0.4rem main-color=[230,230,230]>
+            <column-width>["0.6rem","2rem","1.5rem","1rem","1.5rem"]</column-width>
+            <align>["center","left","left","left","left","left"]</align>
+            <head>
+                <Text>" "</Text>
+                <Text style="margin-left:0.1rem;">Name</Text>
+                <Text style="margin-left:0.1rem;">ID</Text>
+                <Text style="margin-left:0.1rem;">Status</Text>
+                <Text style="margin-left:0.1rem;">Type</Text>
+                <Text style="margin-left:0.1rem;">Expires</Text>
+            </head>
+        </Table>
+    </div>
+</div>
+

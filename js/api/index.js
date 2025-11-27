@@ -3,7 +3,7 @@
 /* require */
 require('mofron');
 const Text=require("mofron-comp-text");
-const CheckBox=require('../mof/js/ComCheck.js');
+const CheckBox=require("../../mof/js/ComCheck.js");
 const Image=require("mofron-comp-image");
 const Button=require("mofron-comp-ujarak");
 const AppBase=require("mofron-comp-appbase");
@@ -18,7 +18,6 @@ const HrzCent=require("mofron-layout-hrzcenter");
 const loMargin=require("mofron-layout-margin");
 const Grid=require("mofron-layout-grid");
 const bodyfade=require("mofron-util-bodyfade");
-const Input=require('../mof/js/Input.js');
 const comutl=mofron.util.common;
 const cmputl=mofron.util.component;
 try {
@@ -56,12 +55,9 @@ try {
         }
     }
     function create_btn_event () {
-        try {
-            bodyfade.fadeout();
-        } catch (e) {
-            console.error(e.stack);
-    	throw e;
-        }
+        bodyfade.fadeout(() => {
+            location.href = "./create.html";
+        });
     }
 
     /* template */
@@ -121,7 +117,7 @@ try {
     appbase_0.config({layout:new Grid([13,85])});
     let cmp11=new Text();
     cmp11.config({text:"Sign-Out"});
-    appbase.config({name:"appbase",title:new mofron.class.ConfArg("Kumiki-Search","./img/logo.png"),mainColor:[255,255,255],header:new mofron.class.PullConf({navi:cmp11})});
+    appbase.config({name:"appbase",title:new mofron.class.ConfArg("Kumiki-Search","../img/logo.png"),mainColor:[255,255,255],header:new mofron.class.PullConf({navi:cmp11})});
     root_cmp.config({theme:{Text:{config:{font:"'M PLUS Rounded 1c'",mainColor:[80,80,80]}}}});
 
     /* script (before) */
@@ -134,7 +130,7 @@ try {
             try{
             /* script (after) */
         api_table.insert([
-            new CheckBox({ image:"./img/check.svg", changeEvent:select_api }),
+            new CheckBox({ image:"../img/check.svg", changeEvent:select_api }),
             new Text({ text:"aaa", style:{"margin-left":"0.1rem;"} }),
             new Text({ text:"bbb", style:{"margin-left":"0.1rem;"} }),
             new Text({ text:"ccc", style:{"margin-left":"0.1rem;"} }),

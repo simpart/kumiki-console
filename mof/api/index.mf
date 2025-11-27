@@ -1,0 +1,85 @@
+<setting>
+    <tag load="mofron-comp-text">Text</tag>
+    <tag load="../../mof/js/ComCheck.js">CheckBox</tag>
+    <tag load="mofron-comp-image">Image</tag>
+    <tag load="mofron-comp-ujarak">Button</tag>
+    <tag load="mofron-comp-appbase">AppBase</tag>
+    <tag load="mofron-comp-table">Table</tag>
+    <tag load="mofron-comp-menutext">MenuText</tag>
+    <tag load="mofron-comp-hrzsplit">Split</tag>
+    <!-- event -->
+    <tag load="mofron-event-click">Click</tag>
+    <!-- effect -->
+    <tag load="mofron-effect-border">Border</tag>
+    <tag load="mofron-effect-width">efWidth</tag>
+    <tag load="mofron-effect-fade">Fade</tag>
+    <!-- layout -->
+    <tag load="mofron-layout-hrzcenter">HrzCent</tag>
+    <tag load="mofron-layout-margin">loMargin</tag>
+    <tag load="mofron-layout-grid">Grid</tag>
+    <!-- util -->
+    <tag load="mofron-util-bodyfade">bodyfade</tag>
+    <root-conf>
+        <theme>
+            <Text:config>
+                <font>"'M PLUS Rounded 1c'"</font>
+                <main-color>[80,80,80]</main-color>
+            </Text:config>
+        </theme>
+    </root-conf>
+</setting>
+
+<script run=init>
+let SEL_API_IDX = null;
+let select_api  = (s1,s2,s3) => {
+    try {
+        let tr_lst      = api_table.childDom().child();
+	let SEL_API_IDX = null;
+	for (let tidx in tr_lst) {
+            let chk_cmp = tr_lst[tidx].child()[0].child()[0].component();
+            if ((s1.id() == chk_cmp.id()) && (s2 === true)) {
+                tr_lst[tidx].style({ "background": "rgb(240,240,240)" });
+		SEL_API_IDX = parseInt(tidx);
+		continue;
+	    }
+	    tr_lst[tidx].style({ "background": "rgb(255,255,255)" });
+	}
+
+	// notify detail area
+    } catch (e) {
+        console.error(e.stack);
+        throw e;
+    }
+}
+</script>
+
+<script run=before>
+api_area.height((window.innerHeight-50)+"px");
+</script>
+
+<script run=after>
+api_table.insert([
+    new CheckBox({ image:"../img/check.svg", changeEvent:select_api }),
+    new Text({ text:"aaa", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"bbb", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"ccc", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"ddd", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"eee", style:{"margin-left":"0.1rem;"} }),
+]);
+bodyfade.speed(200,200);
+bodyfade.fadein();
+</script>
+
+
+<AppBase name=appbase title=("Kumiki-Search","../img/logo.png") main-color=[255,255,255]>
+    <header:mf-pull>
+        <navi:Text text="Sign-Out"></navi:Text>
+    </header:mf-pull>
+    <div layout=Grid:[13,85]>
+        <mf-load>../menu.mf</mf-load>
+        <Split name=api_area ratio=(40,60)>
+	    <mf-load>./table.mf</mf-load>
+	    <mf-load>./detail.mf</mf-load>
+	</Split>
+    </div>
+</AppBase>
