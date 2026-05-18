@@ -1,0 +1,9 @@
+<require>
+    <tag load="mofron-comp-frame">Frame</tag>
+    <tag load="mofron-event-mouseover">Mover</tag>
+</require>
+<script name=mevt run=init>
+    console.log("mouse over");
+</script>
+
+<Frame event=Mover:@mevt></Frame>

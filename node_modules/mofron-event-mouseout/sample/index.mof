@@ -1,0 +1,9 @@
+<require>
+    <tag load="mofron-comp-frame">Frame</tag>
+    <tag load="mofron-event-mouseout">Mout</tag>
+</require>
+<script name=mevt run=init>
+    console.log("mouse out");
+</script>
+
+<Frame event=Mout:@mevt></Frame>

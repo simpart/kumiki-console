@@ -21,7 +21,7 @@ function create_btn_event () {
             <head>
                 <Text>" "</Text>
                 <Text style="margin-left:0.1rem;">Name</Text>
-                <Text style="margin-left:0.1rem;">ID</Text>
+                <Text style="margin-left:0.1rem;">Index-ID</Text>
                 <Text style="margin-left:0.1rem;">Status</Text>
                 <Text style="margin-left:0.1rem;">Type</Text>
                 <Text style="margin-left:0.1rem;">Expires</Text>

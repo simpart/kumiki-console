@@ -42,7 +42,10 @@ module.exports = class extends Input {
             
 	    this.childDom().parent().style({
 	        'border-bottom': '0.01rem solid rgb(90,90,90)',
-		'height':        '0.5rem'
+		'height':        '0.5rem',
+		'width':         '1.5rem',
+		'position':      'relative'
+
             });
             this.effect({modname:"Border"}).width("0rem");
 
@@ -113,6 +116,20 @@ module.exports = class extends Input {
             throw e;
         }
     }
+
+    width (prm, opt) {
+        try {
+            if (prm !== undefined) {
+                this.childDom().parent().style({ 'width':prm });
+            }
+            super.width(prm,opt);
+	} catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+
+
 
 //    afterRender () {
 //        try {

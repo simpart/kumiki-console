@@ -9,7 +9,7 @@ const Button=require("mofron-comp-ujarak");
 const AppBase=require("mofron-comp-appbase");
 const Table=require("mofron-comp-table");
 const MenuText=require("mofron-comp-menutext");
-const Split=require("mofron-comp-dev");
+const Split=require("mofron-comp-hrzsplit");
 const Click=require("mofron-event-click");
 const Border=require("mofron-effect-border");
 const efWidth=require("mofron-effect-width");
@@ -46,9 +46,19 @@ try {
             throw e;
         }
     }
-    function select_menu () {
+    const MENU_URL_MAP = [
+        "../api/index.html",
+        "../credentials/index.html",
+        "../license/index.html",
+        "../plans/index.html",
+        "../support/index.html"
+    ];
+    
+    function select_menu (s1,s2,s3) {
         try {
-            
+            bodyfade.fadeout(() => {
+    	    location.href = MENU_URL_MAP[s2];
+    	});
         } catch (e) {
             console.error(e.stack);
     	throw e;
@@ -63,7 +73,7 @@ try {
     /* template */
 
     /* component */
-    let leftMenu_0_0=new MenuText();
+    let left_menu=new MenuText();
     let leftMenu_0=new mofron.class.Component();
     let leftMenu=new mofron.class.Component();
     let api_area_0_0_0=new Button("Create API");
@@ -76,7 +86,7 @@ try {
     let appbase_0=new mofron.class.Component();
     let appbase=new AppBase();
     let root_cmp=new mofron.class.Component();
-    leftMenu_0.child([leftMenu_0_0]);
+    leftMenu_0.child([left_menu]);
     leftMenu.child([leftMenu_0]);
     api_area_0_0.child([api_area_0_0_0]);
     api_area_0_1.child([api_table]);
@@ -85,11 +95,12 @@ try {
     appbase_0.child([leftMenu,api_area]);
     appbase.child([appbase_0]);
     root_cmp.child([appbase]);
-    leftMenu_0_0.config({text:"APIs"});
-    leftMenu_0_0.config({text:"Access"});
-    leftMenu_0_0.config({text:"License"});
-    leftMenu_0_0.config({text:"Support"});
-    leftMenu_0_0.config({selectEvent:select_menu});
+    left_menu.config({text:"APIs"});
+    left_menu.config({text:"Credentials"});
+    left_menu.config({text:"License"});
+    left_menu.config({text:"Plans"});
+    left_menu.config({text:"Support"});
+    left_menu.config({name:"left_menu",selectEvent:select_menu});
     let lot0=new loMargin("top","0.1rem");
     let lot1=new loMargin("left","0.2rem");
     leftMenu_0.config({layout:[new loMargin("top","0.1rem"),[lot0,lot1]]});
@@ -103,7 +114,7 @@ try {
     let cmp5=new Text(" ");
     let cmp6=new Text("Name");
     cmp6.config({style:{'margin-left':'0.1rem'}});
-    let cmp7=new Text("ID");
+    let cmp7=new Text("Index-ID");
     cmp7.config({style:{'margin-left':'0.1rem'}});
     let cmp8=new Text("Status");
     cmp8.config({style:{'margin-left':'0.1rem'}});

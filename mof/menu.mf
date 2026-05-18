@@ -5,9 +5,19 @@
 </setting>
 
 <script run=init>
-function select_menu () {
+const MENU_URL_MAP = [
+    "../api/index.html",
+    "../credentials/index.html",
+    "../license/index.html",
+    "../plans/index.html",
+    "../support/index.html"
+];
+
+function select_menu (s1,s2,s3) {
     try {
-        
+        bodyfade.fadeout(() => {
+	    location.href = MENU_URL_MAP[s2];
+	});
     } catch (e) {
         console.error(e.stack);
 	throw e;
@@ -24,10 +34,11 @@ function select_menu () {
             <loMargin>"top",0.1rem</loMargin>
             <loMargin>"left","0.2rem"</loMargin>
         </layout>
-        <MenuText select-event=@select_menu>
+        <MenuText name=left_menu select-event=@select_menu>
             <text>APIs</text>
-            <text>Access</text>
+            <text>Credentials</text>
             <text>License</text>
+	    <text>Plans</text>
             <text>Support</text>
         </MenuText>
     </div>

@@ -1,0 +1,26 @@
+<setting>
+    <tag load="mofron-comp-text">Text</tag>
+    <tag load="mofron-comp-appbase">AppBase</tag>
+    <!-- util -->
+    <tag load="mofron-util-bodyfade">bodyfade</tag>
+    <root-conf>
+        <theme>
+            <Text:config>
+                <font>"'M PLUS Rounded 1c'"</font>
+                <main-color>[80,80,80]</main-color>
+            </Text:config>
+        </theme>
+    </root-conf>
+</setting>
+
+<AppBase name=appbase title=("Kumiki-Search","../img/logo.png") main-color=[255,255,255]>
+    <header:mf-pull>
+        <navi:Text text="Sign-Out"></navi:Text>
+    </header:mf-pull>
+    <div layout=Grid:[13,85]>
+        <mf-load>../menu.mf</mf-load>
+        <div>
+            <Text>Support</Text>
+        </div>
+    </div>
+</AppBase>

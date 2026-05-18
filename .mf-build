@@ -1,0 +1,5 @@
+
+[api]
+npx mofron-build -m ./mof/api/index.mf -o ./js/api/index.js -c ./conf/webpack.config.api/index.js
+npx mofron-build -m ./mof/api/create.mf -o ./js/api/create.js -c ./conf/webpack.config.api/create.js 
+
