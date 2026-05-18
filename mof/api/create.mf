@@ -147,7 +147,7 @@ bodyfade.fadein();
     <div layout=Grid:[13,85]>
         <mf-load>../menu.mf</mf-load>
         <div>
-	    <Text size=0.3rem weight=700 style="text-align:center;margin-top:0.1rem;">Create New API</Text>
+	    <Text size=0.3rem weight=700 style="text-align:center;margin-top:0.1rem;">Create New Search Index</Text>
 	    <div>
 	        <style>
 		    display:     flex;
@@ -170,28 +170,34 @@ bodyfade.fadein();
                     <effect:Fade></effect:Fade>
 		</ErrorMsg>
 	        <div>
-	            <Input name=api_name label="API Name:" width="5rem" font="'M PLUS Rounded 1c'"></Input>
+	            <Input name=api_name label="Index Name:" width="5rem" font="'M PLUS Rounded 1c'"></Input>
 		</div>
                 <div>
                     <Input name=api_desc label="Description:" width="8rem" font="'M PLUS Rounded 1c'"></Input>
                 </div>
 		<div>
-		    <Text size=0.2rem>API Type:</Text>
+		    <Text size=0.2rem>Deployment Plan:</Text>
 	            <div name=plans layout=Grid:[33,33,33] style="margin-top:0.1rem;">
 	                <PlanFrame select-event=@plan_select_evt>
                             <plan-name>Free</plan-name>
+			    <price>"$0"</price>
 		            <request>"10K"</request>
-		            <deploy>"Multi Tenant"</deploy>
+		            <deploy>"Shared Infra"</deploy>
+			    <index-size>10MB</index-size>
 		        </PlanFrame>
 		        <PlanFrame select-event=@plan_select_evt>
                             <plan-name>Standard</plan-name>
+			    <price>"$200/Annual"</price>
 		            <request>"100K"</request>
-		            <deploy>"Single Tenant"</deploy>
+		            <deploy>"Dedicated Tenant"</deploy>
+			    <index-size>300MB</index-size>
 		        </PlanFrame>
 		        <PlanFrame select-event=@plan_select_evt>
                             <plan-name>Pro</plan-name>
+			    <price>"Coming Soon"</price>
 		            <request>"Unlimited"</request>
-		            <deploy>"BYOC"</deploy>
+		            <deploy>"BYOC Deployment(AWS)"</deploy>
+			    <index-size>1000MB+</index-size>
 		        </PlanFrame>
                     </div>
 		    <div name=plan_desc style="margin-top:0.1rem">
@@ -203,7 +209,7 @@ bodyfade.fadein();
 		<div>
 		    <Button size=(2.5rem,0.3rem) click-event=@create_evt>
 		        <style>display:block;margin:0 auto;</style>
-		        <text>Create</text>
+		        <text>Next</text>
 		    </Button>
 		</div>
 		<div></div>

@@ -7,9 +7,7 @@
 <script run=init>
 const MENU_URL_MAP = [
     "../api/index.html",
-    "../credentials/index.html",
-    "../license/index.html",
-    "../plans/index.html",
+    "../usage/index.html",
     "../support/index.html"
 ];
 
@@ -36,9 +34,7 @@ function select_menu (s1,s2,s3) {
         </layout>
         <MenuText name=left_menu select-event=@select_menu>
             <text>APIs</text>
-            <text>Credentials</text>
-            <text>License</text>
-	    <text>Plans</text>
+            <text>Usage</text>
             <text>Support</text>
         </MenuText>
     </div>

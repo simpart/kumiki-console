@@ -3,7 +3,7 @@
 /* require */
 require('mofron');
 const Text=require("mofron-comp-text");
-const CheckBox=require("../../mof/js/ComCheck.js");
+const RadioButton=require("../../mof/js/RadioButton.js");
 const Image=require("mofron-comp-image");
 const Button=require("mofron-comp-ujarak");
 const AppBase=require("mofron-comp-appbase");
@@ -28,19 +28,30 @@ try {
     let SEL_API_IDX = null;
     let select_api  = (s1,s2,s3) => {
         try {
+            // table row switch
             let tr_lst      = api_table.childDom().child();
     	let SEL_API_IDX = null;
     	for (let tidx in tr_lst) {
                 let chk_cmp = tr_lst[tidx].child()[0].child()[0].component();
                 if ((s1.id() == chk_cmp.id()) && (s2 === true)) {
-                    tr_lst[tidx].style({ "background": "rgb(240,240,240)" });
+                    tr_lst[tidx].style({ "background": "rgb(240,216,184)" });
     		SEL_API_IDX = parseInt(tidx);
     		continue;
     	    }
-    	    tr_lst[tidx].style({ "background": "rgb(255,255,255)" });
-    	}
     
-    	// notify detail area
+    	    // unselect
+    	    tr_lst[tidx].style({ "background": "rgb(255,255,255)" });
+                chk_cmp.selected(false, {event:false});
+    	}
+            
+    //	console.log(s1);
+    //	// radio button switch
+    //	let t_row = api_table.row();
+    //	for (let ridx in t_row) {
+    //            if (t_row[ridx][0].id() == s1)
+    //	}
+    //
+    //	// notify detail area
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -48,9 +59,7 @@ try {
     }
     const MENU_URL_MAP = [
         "../api/index.html",
-        "../credentials/index.html",
-        "../license/index.html",
-        "../plans/index.html",
+        "../usage/index.html",
         "../support/index.html"
     ];
     
@@ -76,7 +85,7 @@ try {
     let left_menu=new MenuText();
     let leftMenu_0=new mofron.class.Component();
     let leftMenu=new mofron.class.Component();
-    let api_area_0_0_0=new Button("Create API");
+    let api_area_0_0_0=new Button("Create New Index");
     let api_area_0_0=new mofron.class.Component();
     let api_table=new Table();
     let api_area_0_1=new mofron.class.Component();
@@ -96,9 +105,7 @@ try {
     appbase.child([appbase_0]);
     root_cmp.child([appbase]);
     left_menu.config({text:"APIs"});
-    left_menu.config({text:"Credentials"});
-    left_menu.config({text:"License"});
-    left_menu.config({text:"Plans"});
+    left_menu.config({text:"Usage"});
     left_menu.config({text:"Support"});
     left_menu.config({name:"left_menu",selectEvent:select_menu});
     let lot0=new loMargin("top","0.1rem");
@@ -118,17 +125,15 @@ try {
     cmp7.config({style:{'margin-left':'0.1rem'}});
     let cmp8=new Text("Status");
     cmp8.config({style:{'margin-left':'0.1rem'}});
-    let cmp9=new Text("Type");
+    let cmp9=new Text("Deployment");
     cmp9.config({style:{'margin-left':'0.1rem'}});
-    let cmp10=new Text("Expires");
-    cmp10.config({style:{'margin-left':'0.1rem'}});
-    api_table.config({name:"api_table",rules:"under",rowHeight:"0.4rem",mainColor:[230,230,230],columnWidth:["0.6rem","2rem","1.5rem","1rem","1.5rem"],align:["center","left","left","left","left","left"],head:[cmp5,cmp6,cmp7,cmp8,cmp9,cmp10]});
+    api_table.config({name:"api_table",rules:"under",rowHeight:"0.4rem",mainColor:[230,230,230],columnWidth:["0.5rem","2.5rem","2rem","1rem"],align:["center","left","left","left","left"],head:[cmp5,cmp6,cmp7,cmp8,cmp9]});
     api_area_0_1.config({layout:new HrzCent(85),style:{'margin-top':'0.2rem'}});
     api_area.config({name:"api_area",ratio:new mofron.class.ConfArg(40,60)});
     appbase_0.config({layout:new Grid([13,85])});
-    let cmp11=new Text();
-    cmp11.config({text:"Sign-Out"});
-    appbase.config({name:"appbase",title:new mofron.class.ConfArg("Kumiki-Search","../img/logo.png"),mainColor:[255,255,255],header:new mofron.class.PullConf({navi:cmp11})});
+    let cmp10=new Text();
+    cmp10.config({text:"Sign-Out"});
+    appbase.config({name:"appbase",title:new mofron.class.ConfArg("Kumiki-Search","../img/logo.png"),mainColor:[255,255,255],header:new mofron.class.PullConf({navi:cmp10})});
     root_cmp.config({theme:{Text:{config:{font:"'M PLUS Rounded 1c'",mainColor:[80,80,80]}}}});
 
     /* script (before) */
@@ -141,13 +146,22 @@ try {
             try{
             /* script (after) */
         api_table.insert([
-            new CheckBox({ image:"../img/check.svg", changeEvent:select_api }),
+            new RadioButton({ changeEvent:select_api }),
             new Text({ text:"aaa", style:{"margin-left":"0.1rem;"} }),
             new Text({ text:"bbb", style:{"margin-left":"0.1rem;"} }),
             new Text({ text:"ccc", style:{"margin-left":"0.1rem;"} }),
             new Text({ text:"ddd", style:{"margin-left":"0.1rem;"} }),
-            new Text({ text:"eee", style:{"margin-left":"0.1rem;"} }),
         ]);
+        
+        api_table.insert([
+            new RadioButton({ changeEvent:select_api }),
+            new Text({ text:"aaa", style:{"margin-left":"0.1rem;"} }),
+            new Text({ text:"bbb", style:{"margin-left":"0.1rem;"} }),
+            new Text({ text:"ccc", style:{"margin-left":"0.1rem;"} }),
+            new Text({ text:"ddd", style:{"margin-left":"0.1rem;"} }),
+        ]);
+        
+        
         bodyfade.speed(200,200);
         bodyfade.fadein();
 

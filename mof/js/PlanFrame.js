@@ -72,6 +72,10 @@ module.exports = class extends mofron.class.Component {
 			    });
 	    this.frame().child(plan_area);		
             
+            /* price */
+	    this.price().size("0.25rem");
+	    this.frame().child(this.price());
+            
             /* request limit */
             this.request().size("0.25rem");
             this.frame().child(this.request());
@@ -80,30 +84,28 @@ module.exports = class extends mofron.class.Component {
 	    this.deploy().size("0.25rem");
 	    this.frame().child(this.deploy());
             
-	    /* remaining count */
-	    this.remain().size("0.25rem");
-	    this.remain().text("Available: 1 API");
-	    this.frame().child(this.remain());
-            
+            this.indexSize().size("0.25rem");
+	    this.frame().child(this.indexSize());
+
             /* detail */
             //this.detail().size('0.2rem');
             //this.detail().text('View Details');
             //this.frame().child(this.detail());
             
             /* select */
-            this.button().config({
-                text: 'Select',
-                width: '70%', height:'0.3rem',
-		baseColor: [255,255,255],
-		clickEvent: new ConfArg(
-		                (c1,c2,c3) => {
-		                    let evt = c3.selectEvent();
-				    evt.forEach((item,idx) => { item[0](c3,null,item[1]); });
-		                },
-				this
-                            )
-            });
-	    this.frame().child(this.button());
+//            this.button().config({
+//                text: 'Select',
+//                width: '70%', height:'0.3rem',
+//		baseColor: [255,255,255],
+//		clickEvent: new ConfArg(
+//		                (c1,c2,c3) => {
+//		                    let evt = c3.selectEvent();
+//				    evt.forEach((item,idx) => { item[0](c3,null,item[1]); });
+//		                },
+//				this
+//                            )
+//            });
+//	    this.frame().child(this.button());
 
             /* padding */
             this.frame().child(
@@ -214,11 +216,11 @@ module.exports = class extends mofron.class.Component {
 
     price (prm) {
         try {
-            let set_prm = prm
-            if (typeof prm === 'number') {
-                set_prm = '$' + set_prm + '/month';
-            }
-            return this.innerComp('price', set_prm, Text);
+//            let set_prm = prm
+//            if (typeof prm === 'number') {
+//                set_prm = '$' + set_prm + '/month';
+//            }
+            return this.innerComp('price', prm, Text);
 	} catch (e) {
             console.error(e.stack);
             throw e;
@@ -228,10 +230,25 @@ module.exports = class extends mofron.class.Component {
     request (prm) {
         try {
 	     let set_prm = prm;
-             if (typeof prm === 'string') {
-                 set_prm = set_prm + ' requests/month';
-             }
+	     if ("Unlimited" == prm) {
+	         set_prm = prm;
+             } else if (typeof prm === 'string') {
+                 set_prm = set_prm + ' req/month';
+	     }
             return this.innerComp('request', set_prm, Text);
+	} catch (e) {
+            console.error(e.stack);
+            throw e;
+	}
+    }
+
+    indexSize(prm) {
+        try {
+	    let set_prm = prm;
+	    if (typeof prm === 'string') {
+                set_prm = set_prm + ' index';
+	    }
+            return this.innerComp('indexSize', set_prm, Text);
 	} catch (e) {
             console.error(e.stack);
             throw e;

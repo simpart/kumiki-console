@@ -128,9 +128,7 @@ try {
     }
     const MENU_URL_MAP = [
         "../api/index.html",
-        "../credentials/index.html",
-        "../license/index.html",
-        "../plans/index.html",
+        "../usage/index.html",
         "../support/index.html"
     ];
     
@@ -151,7 +149,7 @@ try {
     let left_menu=new MenuText();
     let leftMenu_0=new mofron.class.Component();
     let leftMenu=new mofron.class.Component();
-    let cmp0_0_0_0=new Text("Create New API");
+    let cmp0_0_0_0=new Text("Create New Search Index");
     let cmp0_0_0_1_0=new Image();
     let cmp0_0_0_1_1=new Text("Back");
     let cmp0_0_0_1=new mofron.class.Component();
@@ -160,7 +158,7 @@ try {
     let cmp0_0_0_2_0=new mofron.class.Component();
     let api_desc=new Input();
     let cmp0_0_0_2_1=new mofron.class.Component();
-    let cmp0_0_0_2_2_0=new Text("API Type:");
+    let cmp0_0_0_2_2_0=new Text("Deployment Plan:");
     let plans_0=new PlanFrame();
     let plans_1=new PlanFrame();
     let plans_2=new PlanFrame();
@@ -193,9 +191,7 @@ try {
     cmp0.child([cmp0_0]);
     root_cmp.child([cmp0]);
     left_menu.config({text:"APIs"});
-    left_menu.config({text:"Credentials"});
-    left_menu.config({text:"License"});
-    left_menu.config({text:"Plans"});
+    left_menu.config({text:"Usage"});
     left_menu.config({text:"Support"});
     left_menu.config({name:"left_menu",selectEvent:select_menu});
     let lot1=new loMargin("top","0.1rem");
@@ -210,18 +206,18 @@ try {
     cmp0_0_0_1.config({style:{'display':'flex','align-items':'center','margin-top':'0.1rem','position':'relative','top':'-0.5rem'}});
     let eff4=new Fade();
     error.config({name:"error",effect:eff4});
-    api_name.config({name:"api_name",label:"API Name:",width:"5rem",font:"'M PLUS Rounded 1c'"});
+    api_name.config({name:"api_name",label:"Index Name:",width:"5rem",font:"'M PLUS Rounded 1c'"});
     api_desc.config({name:"api_desc",label:"Description:",width:"8rem",font:"'M PLUS Rounded 1c'"});
     cmp0_0_0_2_2_0.config({size:"0.2rem"});
-    plans_0.config({selectEvent:plan_select_evt,planName:"Free",request:"10K",deploy:"Multi Tenant"});
-    plans_1.config({selectEvent:plan_select_evt,planName:"Standard",request:"100K",deploy:"Single Tenant"});
-    plans_2.config({selectEvent:plan_select_evt,planName:"Pro",request:"Unlimited",deploy:"BYOC"});
+    plans_0.config({selectEvent:plan_select_evt,planName:"Free",price:"$0",request:"10K",deploy:"Shared Infra",indexSize:"10MB"});
+    plans_1.config({selectEvent:plan_select_evt,planName:"Standard",price:"$200/Annual",request:"100K",deploy:"Dedicated Tenant",indexSize:"300MB"});
+    plans_2.config({selectEvent:plan_select_evt,planName:"Pro",price:"Coming Soon",request:"Unlimited",deploy:"BYOC Deployment(AWS)",indexSize:"1000MB+"});
     plans.config({name:"plans",layout:new Grid([33,33,33]),style:{'margin-top':'0.1rem'}});
     plan_desc_0.config({size:"0.2rem",visible:false});
     plan_desc_1.config({size:"0.2rem",visible:false});
     plan_desc_2.config({size:"0.2rem",visible:false});
     plan_desc.config({name:"plan_desc",style:{'margin-top':'0.1rem'}});
-    cmp0_0_0_2_3_0.config({size:new mofron.class.ConfArg("2.5rem","0.3rem"),clickEvent:create_evt,style:{'display':'block','margin':'0 auto'},text:"Create"});
+    cmp0_0_0_2_3_0.config({size:new mofron.class.ConfArg("2.5rem","0.3rem"),clickEvent:create_evt,style:{'display':'block','margin':'0 auto'},text:"Next"});
     let lot5=new HrzCenter(80);
     let lot6=new loMargin("top","0.4rem");
     cmp0_0_0_2.config({layout:[lot5,lot6]});

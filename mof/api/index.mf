@@ -1,6 +1,6 @@
 <setting>
     <tag load="mofron-comp-text">Text</tag>
-    <tag load="../../mof/js/ComCheck.js">CheckBox</tag>
+    <tag load="../../mof/js/RadioButton.js">RadioButton</tag>
     <tag load="mofron-comp-image">Image</tag>
     <tag load="mofron-comp-ujarak">Button</tag>
     <tag load="mofron-comp-appbase">AppBase</tag>
@@ -33,19 +33,30 @@
 let SEL_API_IDX = null;
 let select_api  = (s1,s2,s3) => {
     try {
+        // table row switch
         let tr_lst      = api_table.childDom().child();
 	let SEL_API_IDX = null;
 	for (let tidx in tr_lst) {
             let chk_cmp = tr_lst[tidx].child()[0].child()[0].component();
             if ((s1.id() == chk_cmp.id()) && (s2 === true)) {
-                tr_lst[tidx].style({ "background": "rgb(240,240,240)" });
+                tr_lst[tidx].style({ "background": "rgb(240,216,184)" });
 		SEL_API_IDX = parseInt(tidx);
 		continue;
 	    }
-	    tr_lst[tidx].style({ "background": "rgb(255,255,255)" });
-	}
 
-	// notify detail area
+	    // unselect
+	    tr_lst[tidx].style({ "background": "rgb(255,255,255)" });
+            chk_cmp.selected(false, {event:false});
+	}
+        
+//	console.log(s1);
+//	// radio button switch
+//	let t_row = api_table.row();
+//	for (let ridx in t_row) {
+//            if (t_row[ridx][0].id() == s1)
+//	}
+//
+//	// notify detail area
     } catch (e) {
         console.error(e.stack);
         throw e;
@@ -59,13 +70,22 @@ api_area.height((window.innerHeight-50)+"px");
 
 <script run=after>
 api_table.insert([
-    new CheckBox({ image:"../img/check.svg", changeEvent:select_api }),
+    new RadioButton({ changeEvent:select_api }),
     new Text({ text:"aaa", style:{"margin-left":"0.1rem;"} }),
     new Text({ text:"bbb", style:{"margin-left":"0.1rem;"} }),
     new Text({ text:"ccc", style:{"margin-left":"0.1rem;"} }),
     new Text({ text:"ddd", style:{"margin-left":"0.1rem;"} }),
-    new Text({ text:"eee", style:{"margin-left":"0.1rem;"} }),
 ]);
+
+api_table.insert([
+    new RadioButton({ changeEvent:select_api }),
+    new Text({ text:"aaa", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"bbb", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"ccc", style:{"margin-left":"0.1rem;"} }),
+    new Text({ text:"ddd", style:{"margin-left":"0.1rem;"} }),
+]);
+
+
 bodyfade.speed(200,200);
 bodyfade.fadein();
 </script>
